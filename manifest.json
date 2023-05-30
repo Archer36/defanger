@@ -5,8 +5,8 @@
         "description": "Defang and refang IP addresses and URLs",
 
         "icons": {
-                "16": "assets/icons/defanger-icon-16.png",
-                "48": "assets/icons/defanger-icon-48.png"
+                "16": "icons/defanger-icon-16.png",
+                "48": "icons/defanger-icon-48.png"
         },
 
     "content_security_policy": "default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'",
@@ -15,5 +15,18 @@
         "scripts": [
             "src/background.js"
         ]
-    }
+    },
+
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": [ 
+            "src/utils/indicatorparser.js",
+            "src/content_scripts/content.js"
+        ]
+    }],
+
+    "permissions": [
+        "contextMenus",
+        "clipboardRead"
+    ]
 }

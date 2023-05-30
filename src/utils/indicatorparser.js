@@ -17,17 +17,13 @@ class IndicatorParser {
      */
     getIndicatorType(indicator) {
 
-        if(indicator.match(this.domain)) {
-            return "domain";
-        } else if(indicator.match(this.ip)) {
-            return "ip";
-        } else if(indicator.match(this.url)) {
-            return "url";
+        if(indicator.match(this.domain) || indicator.match(this.ip) || indicator.match(this.url)) {
+            return "refanged";
         }  else if(indicator.match(this.def_domain) || indicator.match(this.def_ip) || 
             indicator.match(this.def_url)) {
-            return ["defanged", ""];
+            return "defanged";
         } else {
-            return ["invalid", ""];
+            return "invalid";
         }
     }
 
