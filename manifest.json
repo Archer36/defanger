@@ -13,6 +13,7 @@
 
     "background": {
         "scripts": [
+            "src/utils/indicatorparser.js",
             "src/background.js"
         ]
     },
@@ -27,6 +28,7 @@
 
     "permissions": [
         "contextMenus",
-        "clipboardRead"
+        "clipboardRead",
+        "clipboardWrite"
     ]
 }

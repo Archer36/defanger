@@ -1,3 +1,6 @@
+var indicator = "";
+var indicatorParser = new IndicatorParser();
+
 /**
 * Create context menu
 */
@@ -34,19 +37,32 @@ browser.contextMenus.create({
 browser.contextMenus.onClicked.addListener((info, tab) => {
   switch (info.menuItemId) {
     case "defang_copy":
-      break;
+        let defanged = indicatorParser.defangIndicator(indicator);
+        navigator.clipboard.writeText(defanged);
+        break;
     case "refang_copy":
-      break;
+        let refanged = indicatorParser.refangIndicator(indicator);
+        navigator.clipboard.writeText(refanged);
+        break;
     case "defang_paste":
-      break;
+          navigator.clipboard.readText().then((clipboardText) => {
+              let modifiedText = indicatorParser.defangIndicator(clipboardText);
+              browser.tabs.sendMessage(tab.id, { text: modifiedText });
+          });
+        break;
     case "refang_paste":
-      break;
+          navigator.clipboard.readText().then((clipboardText) => {
+              let modifiedText = indicatorParser.refangIndicator(clipboardText);
+              browser.tabs.sendMessage(tab.id, { text: modifiedText });
+          });
+        break;
   }
 });
 
 
 browser.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.id == 0) {
+        indicator = request.indicator;
         let visible = {
             "defanged": request.type === "defanged",
             "refanged": request.type === "refanged"

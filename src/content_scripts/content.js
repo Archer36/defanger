@@ -5,11 +5,21 @@ document.addEventListener("selectionchange", ()=> {
 
     if (selectedText) {
         type = indicatorParser.getIndicatorType(selectedText);
-        console.log(type);
         browser.runtime.sendMessage({
             id: 0,
-            type: type
+            type: type,
+            indicator: selectedText
         });
 
     }
+});
+
+
+browser.runtime.onMessage.addListener((message) => {
+  if (message.text) {
+    const activeElement = document.activeElement;
+    if (activeElement) {
+      activeElement.value = message.text;
+    }
+  }
 });
