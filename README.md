@@ -1,4 +1,13 @@
 # defanger
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/vincenzocaputo/defanger?style=plastic)
+![Mozilla Add-on](https://img.shields.io/amo/v/defanger?style=plastic)
+![Mozilla Add-on](https://img.shields.io/amo/users/defanger?style=plastic)
+
+<p align="left">
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/defanger/">
+  <img src="images/get-the-addon-129x45px.8041c789.png"/>
+  </a>
+</p>
 
 Defanger is a simple Firefox add-on that that helps you to quickly defang or refang indicators before copying or pasting.
 
