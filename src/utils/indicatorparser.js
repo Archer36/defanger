@@ -4,7 +4,7 @@ class IndicatorParser {
         this.domain = new RegExp(/^((?!-)[_A-Za-z0-9-]{1,63}(?<!-)\.)+([A-Za-z]{2,63})$/);
         this.def_domain = new RegExp(/^((?!-)[_A-Za-z0-9-]{1,63}(?<!-)(?:(\[\.\]|\.)))+[A-Za-z]{2,63}$/);
         this.url = new RegExp(/^(?:http[s]?):\/\/((?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,63})\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)$/);
-        this.def_url = new RegExp(/^(?:h(xx|XX|tt)p[s]?):\/\/(?:www(?:(\[\.\]|\.)))?(?:[-a-zA-Z0-9@:%_\+~#=]+(\[\.\]|\.))+(?:[a-z]{2,63})\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)$/)
+        this.def_url = new RegExp(/^(?:h(xx|XX|tt)p[s]?):\/\/(?:www(?:(\[\.\]|\.|\[dot\])))?(?:[-a-zA-Z0-9@:%_\+~#=]+(\[\.\]|\.|\[dot\]))+(?:[a-z]{2,63})\b(?:\:[0-9]{1,5})(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)$/)
         this.ip = new RegExp(/^(?!0)(?!.*\.$)((2[0-4][0-9]|25[0-5]|1[0-9][0-9]|[1-9][0-9]|\d)\.){3}(2[0-4][0-9]|25[0-5]|1[0-9][0-9]|[1-9][0-9]|\d)$/);
         this.def_ip = new RegExp(/^(?!0)(?!.*\.$)((2[0-4][0-9]|25[0-5]|1[0-9][0-9]|[1-9][0-9]|\d)(?:(\[\.\]|\.))){3}(2[0-4][0-9]|25[0-5]|1[0-9][0-9]|[1-9][0-9]|\d)$/);
     }
@@ -39,6 +39,8 @@ class IndicatorParser {
             def_indicator = def_indicator.replaceAll("hxxp","http");
             def_indicator = def_indicator.replaceAll("hXXp","http");
         }
+        // Replace [dot] sequences
+        def_indicator = def_indicator.replaceAll("[dot]",".");
         // Remove square brackets
         def_indicator = def_indicator.replaceAll("[", "");
         let ref_indicator = def_indicator.replaceAll("]", "");
