@@ -1,8 +1,8 @@
 {
         "manifest_version": 2,
-        "name": "Defanger",
-        "version": "0.0.1",
-        "description": "Defang and refang IP addresses and URLs",
+        "name": "Defanger MK2",
+        "version": "0.1",
+        "description": "Defang and refang IP addresses and URLs. Modified version of: https://addons.mozilla.org/en-US/firefox/addon/defanger/",
 
         "icons": {
                 "16": "icons/defanger-icon-16.png",
